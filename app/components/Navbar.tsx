@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
               width="50"
               height="56"
               src="/blogify_logo.svg"
-              alt="personaliz_logo"
+              alt="Blogify Logo"
               className="mr-3 h-[56px]"
             />
             Blogify

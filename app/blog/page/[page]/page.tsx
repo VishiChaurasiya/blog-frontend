@@ -1,35 +1,32 @@
+import { notFound } from "next/navigation";
+import getPosts from "@/app/actions/getPosts";
+import TagInfo from "@/app/components/TagInfo";
 import Link from "next/link";
-import getPosts from "./actions/getPosts";
-import getTags from "./actions/getTags";
-import Post from "./components/Post";
-import TagInfo from "./components/TagInfo";
 import Image from "next/image";
+import getTags from "@/app/actions/getTags";
 
-interface Color {
-  bg: string;
-  font: string;
+interface IParams {
+  page?: string;
 }
 
-const color: { [key: number]: Color } = {
-  0: { bg: "#FFEFDB", font: "#8F5000" },
-  1: { bg: "#EDE9FF", font: "#10009F" },
-  2: { bg: "#EDFFD7", font: "#038F00" },
-};
-
-const Home = async () => {
+const page = async ({ params }: { params: IParams }) => {
   const tags = await getTags();
   const posts = await getPosts();
-  const firstPost = posts[0];
-  const otherPosts = [1, 2, 3].map((index) => posts[index]);
+
+  const startIndex = (+(params?.page ?? 1) - 1) * 6;
+  const paginatedPosts = posts.slice(startIndex, startIndex + 6);
+
+  if (!paginatedPosts.length) {
+    return notFound();
+  }
 
   return (
     <div>
       <TagInfo title="Blogify.io" tags={tags} />
 
       <main className="px-[15px] py-[40px] lg:px-[92px] lg:py-[64px]">
-        <Post post={firstPost} />
-        <div className="mt-[30px] lg:mt-[65px] flex flex-col lg:flex-row justify-between items-center gap-8">
-          {otherPosts.map((post, index) => (
+        <div className="mt-[30px] lg:mt-[65px] grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10">
+          {paginatedPosts.map((post, index) => (
             <article className="flex flex-col gap-4 flex-1" key={index}>
               <Link href={`/${post.slug}`}>
                 {post.image && (
@@ -67,4 +64,12 @@ const Home = async () => {
   );
 };
 
-export default Home;
+export default page;
+
+export async function generateStaticParams() {
+  const posts = await getPosts();
+
+  return posts.map((_, index) => ({
+    page: (index + 1).toString(),
+  }));
+}

@@ -46,7 +46,7 @@ const tags = async ({ params }: { params: IParams }) => {
                   width="390"
                   height="200"
                   src={post.image}
-                  alt="personaliz_logo"
+                  alt="Post Image"
                   className="w-full lg:w-[390px] lg:h-[228px] flex-shrink-0 aspect-[1.5] rounded-[20px]"
                 />
               )}

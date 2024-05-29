@@ -20,7 +20,7 @@ export interface Post {
 const getPosts = async (
   queryParams?: Record<string, string>
 ): Promise<Post[]> => {
-  let apiUrl = `${process.env.NEXT_PUBLIC_URL}/blog/post`;
+  let apiUrl = `${process.env.NEXT_PUBLIC_URL}/blog/post?_sort=createdAt&_order=desc`;
 
   if (queryParams) {
     const queryString = new URLSearchParams(queryParams).toString();

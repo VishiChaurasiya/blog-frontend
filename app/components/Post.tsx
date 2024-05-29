@@ -10,15 +10,17 @@ const Post = ({ post }: PostProps) => {
   return (
     <div className="flex flex-col lg:flex-row gap-[25px] lg:gap-[40px]">
       <div className="flex-[1]">
-        <Link href={`/${post.slug}`}>
-          <Image
-            width="600"
-            height="380"
-            src={post.image}
-            alt="personaliz_logo"
-            className="w-full lg:aspect-square rounded-[20px] object-cover"
-          />
-        </Link>
+        {post.image && (
+          <Link href={`/${post.slug}`}>
+            <Image
+              width="600"
+              height="380"
+              src={post.image}
+              alt="Post Image"
+              className="w-full lg:aspect-square rounded-[20px] object-cover"
+            />
+          </Link>
+        )}
       </div>
 
       <div className="flex-[2] flex flex-col justify-center gap-[10px] md:gap-[25px]">
