@@ -11,7 +11,7 @@ const Post = ({ post }: PostProps) => {
     <div className="flex flex-col lg:flex-row gap-[25px] lg:gap-[40px]">
       <div className="flex-[1]">
         {post.image && (
-          <Link href={`/${post.slug}`}>
+          <Link href={`/blog/${post.slug}`}>
             <Image
               width="600"
               height="380"
@@ -36,7 +36,7 @@ const Post = ({ post }: PostProps) => {
           ))}
         </div>
 
-        <Link href={`/${post.slug}`}>
+        <Link href={`/blog/${post.slug}`}>
           <h1 className="lg:text-[30px] font-semibold leading-[1.3]">
             {post.title}
           </h1>

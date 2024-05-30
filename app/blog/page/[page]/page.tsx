@@ -4,7 +4,7 @@ import TagInfo from "@/app/components/TagInfo";
 import Link from "next/link";
 import Image from "next/image";
 import getTags from "@/app/actions/getTags";
-import Pagination from "@/app/components/Pagin";
+import Pagination from "@/app/components/Pagination";
 
 interface IParams {
   page?: string;
@@ -32,7 +32,7 @@ const page = async ({ params }: { params: IParams }) => {
         <div className="mt-[30px] lg:mt-[65px] grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10">
           {paginatedPosts.map((post, index) => (
             <article className="flex flex-col gap-4 flex-1" key={index}>
-              <Link href={`/${post.slug}`}>
+              <Link href={`/blog/${post.slug}`}>
                 {post.image && (
                   <Image
                     width="390"
@@ -54,7 +54,7 @@ const page = async ({ params }: { params: IParams }) => {
                   </Link>
                 ))}
               </div>
-              <Link href={`/${post.slug}`}>
+              <Link href={`/blog/${post.slug}`}>
                 <h1 className="lg:text-lg font-semibold">{post.title}</h1>
               </Link>
               <span className="text-sm lg:text-base text-black/60">

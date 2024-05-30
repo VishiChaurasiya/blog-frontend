@@ -40,7 +40,7 @@ const tags = async ({ params }: { params: IParams }) => {
       <main className="px-[15px] py-[40px] lg:px-[92px] lg:py-[64px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center gap-8">
         {filteredPosts.map((post, index) => (
           <article className="flex flex-col gap-4 flex-1" key={index}>
-            <Link href={`/${post.slug}`}>
+            <Link href={`/blog/${post.slug}`}>
               {post.image && (
                 <Image
                   width="390"
@@ -61,7 +61,7 @@ const tags = async ({ params }: { params: IParams }) => {
             >
               {post.tags[0]?.title}
             </Link>
-            <Link href={`/${post.slug}`}>
+            <Link href={`/blog/${post.slug}`}>
               <h1 className="lg:text-lg font-semibold">{post.title}</h1>
             </Link>
             <span className="text-sm lg:text-base text-black/60">

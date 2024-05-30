@@ -4,7 +4,7 @@ import getTags from "./actions/getTags";
 import Post from "./components/Post";
 import TagInfo from "./components/TagInfo";
 import Image from "next/image";
-import Pagination from "./components/Pagin";
+import Pagination from "./components/Pagination";
 
 const Home = async () => {
   const tags = await getTags();
@@ -24,7 +24,7 @@ const Home = async () => {
         <div className="mt-[30px] lg:mt-[65px] flex flex-col lg:flex-row justify-between items-center gap-8">
           {otherPosts.map((post, index) => (
             <article className="flex flex-col gap-4 flex-1" key={index}>
-              <Link href={`/${post.slug}`}>
+              <Link href={`/blog/${post.slug}`}>
                 {post.image && (
                   <Image
                     width="390"
@@ -46,7 +46,7 @@ const Home = async () => {
                   </Link>
                 ))}
               </div>
-              <Link href={`/${post.slug}`}>
+              <Link href={`/blog/${post.slug}`}>
                 <h1 className="lg:text-lg font-semibold">{post.title}</h1>
               </Link>
               <span className="text-sm lg:text-base text-black/60">
