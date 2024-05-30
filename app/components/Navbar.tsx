@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
                 : "fixed left-[-100%]"
             }
           >
-            <button className="flex flex-col text-black text-center">
+            <button className="flex flex-col items-center text-black text-center mx-auto ">
               <p className="pt-4 cursor-pointer">About Us</p>
               <p className="p-4 cursor-pointer">Portfolio</p>
               <p className="pb-4 cursor-pointer">Services</p>
