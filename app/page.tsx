@@ -6,11 +6,6 @@ import TagInfo from "./components/TagInfo";
 import Image from "next/image";
 import Pagination from "./components/Pagination";
 
-interface Color {
-  bg: string;
-  font: string;
-}
-
 const Home = async () => {
   const tags = await getTags();
   const posts = await getPosts();
