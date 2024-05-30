@@ -23,12 +23,11 @@ const color: { [key: number]: Color } = {
 const tags = async ({ params }: { params: IParams }) => {
   const posts = await getPosts();
   const tags = await getTags();
-  
+
   const tag = tags.find((tag) => tag.slug === params.slug);
   const filteredPosts = posts.filter((post) =>
     post.tags.some((tag) => tag.slug === params.slug)
   );
-
 
   if (!filteredPosts.length || !tag) {
     return notFound();
@@ -51,16 +50,21 @@ const tags = async ({ params }: { params: IParams }) => {
                 />
               )}
             </Link>
-            <Link
-              href={`/blog/tag/${post.tags[0]?.slug}`}
-              className={`rounded-[5px] px-[20px] py-[8px] text-sm font-medium max-w-max`}
-              style={{
-                backgroundColor: color[index % 3].bg,
-                color: color[index % 3].font,
-              }}
-            >
-              {post.tags[0]?.title}
-            </Link>
+            <div className="flex justify-start items-center gap-2">
+              {post.tags.map((tag, index) => (
+                <Link
+                  key={tag.slug}
+                  href={`/blog/tag/${tag.slug}`}
+                  className="rounded-[5px] px-[20px] py-[8px] text-sm font-medium max-w-max"
+                  style={{
+                    background: color[index % 3].bg,
+                    color: color[index % 3].font,
+                  }}
+                >
+                  {tag.title}
+                </Link>
+              ))}
+            </div>
             <Link href={`/blog/${post.slug}`}>
               <h1 className="lg:text-lg font-semibold">{post.title}</h1>
             </Link>

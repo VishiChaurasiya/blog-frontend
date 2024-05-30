@@ -6,6 +6,17 @@ import TagInfo from "./components/TagInfo";
 import Image from "next/image";
 import Pagination from "./components/Pagination";
 
+interface Color {
+  bg: string;
+  font: string;
+}
+
+const color: { [key: number]: Color } = {
+  0: { bg: "#FFEFDB", font: "#8F5000" },
+  1: { bg: "#EDE9FF", font: "#10009F" },
+  2: { bg: "#EDFFD7", font: "#038F00" },
+};
+
 const Home = async () => {
   const tags = await getTags();
   const posts = await getPosts();
@@ -35,12 +46,16 @@ const Home = async () => {
                   />
                 )}
               </Link>
-              <div className="flex justify-start items-center gap-2 h-[36px]">
-                {post.tags.map((tag) => (
+              <div className="flex justify-start items-center gap-2">
+                {post.tags.map((tag, index) => (
                   <Link
                     key={tag.slug}
                     href={`/blog/tag/${tag.slug}`}
-                    className="rounded-[5px] bg-black/5 px-[20px] py-[8px] text-sm font-medium max-w-max"
+                    className="rounded-[5px] px-[20px] py-[8px] text-sm font-medium max-w-max"
+                    style={{
+                      background: color[index % 3].bg,
+                      color: color[index % 3].font,
+                    }}
                   >
                     {tag.title}
                   </Link>
