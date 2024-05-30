@@ -52,7 +52,7 @@ const tags = async ({ params }: { params: IParams }) => {
               )}
             </Link>
             <Link
-              href={`/tag/${post.tags[0]?.slug}`}
+              href={`/blog/tag/${post.tags[0]?.slug}`}
               className={`rounded-[5px] px-[20px] py-[8px] text-sm font-medium max-w-max`}
               style={{
                 backgroundColor: color[index % 3].bg,

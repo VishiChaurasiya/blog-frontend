@@ -4,6 +4,7 @@ import TagInfo from "@/app/components/TagInfo";
 import Link from "next/link";
 import Image from "next/image";
 import getTags from "@/app/actions/getTags";
+import Pagination from "@/app/components/Pagination";
 
 interface IParams {
   page?: string;
@@ -12,6 +13,9 @@ interface IParams {
 const page = async ({ params }: { params: IParams }) => {
   const tags = await getTags();
   const posts = await getPosts();
+
+  const totalPages = Math.ceil(posts.length / 6);
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   const startIndex = (+(params?.page ?? 1) - 1) * 6;
   const paginatedPosts = posts.slice(startIndex, startIndex + 6);
@@ -43,7 +47,7 @@ const page = async ({ params }: { params: IParams }) => {
                 {post.tags.map((tag) => (
                   <Link
                     key={tag.slug}
-                    href={`/tag/${tag.slug}`}
+                    href={`/blog/tag/${tag.slug}`}
                     className="rounded-[5px] bg-black/5 px-[20px] py-[8px] text-sm font-medium max-w-max"
                   >
                     {tag.title}
@@ -60,6 +64,8 @@ const page = async ({ params }: { params: IParams }) => {
           ))}
         </div>
       </main>
+
+      <Pagination pages={pages} />
     </div>
   );
 };

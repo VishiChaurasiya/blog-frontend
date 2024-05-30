@@ -6,7 +6,7 @@ interface TagInfoProps {
   tags: Tag[];
 }
 
-const TagInfo: React.FC<TagInfoProps> = ({ title, tags }) => {
+const TagInfo = ({ title, tags }: TagInfoProps) => {
   return (
     <main className="h-[400px] flex flex-col justify-center bg-blue-200 items-center px-[15px] py-[40px] bg-cover bg-center">
       <h1 className="text-[25px] sm:text-[48px] font-semibold leading-[1]">
@@ -17,7 +17,7 @@ const TagInfo: React.FC<TagInfoProps> = ({ title, tags }) => {
         {tags.map(({ title, slug }) => (
           <Link
             key={slug}
-            href={`/tag/${slug}`}
+            href={`/blog/tag/${slug}`}
             className="px-[20px] py-[8px] rounded-[8px] border border-black text-sm"
             style={{
               background:

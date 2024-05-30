@@ -28,7 +28,7 @@ const Post = ({ post }: PostProps) => {
           {post.tags.map((tag) => (
             <Link
               key={tag.slug}
-              href={`/tag/${tag.slug}`}
+              href={`/blog/tag/${tag.slug}`}
               className="rounded-[5px] bg-black/5 px-[20px] py-[8px] text-sm font-medium max-w-max"
             >
               {tag.title}

@@ -4,23 +4,21 @@ import getTags from "./actions/getTags";
 import Post from "./components/Post";
 import TagInfo from "./components/TagInfo";
 import Image from "next/image";
+import Pagination from "./components/Pagination";
 
 interface Color {
   bg: string;
   font: string;
 }
 
-const color: { [key: number]: Color } = {
-  0: { bg: "#FFEFDB", font: "#8F5000" },
-  1: { bg: "#EDE9FF", font: "#10009F" },
-  2: { bg: "#EDFFD7", font: "#038F00" },
-};
-
 const Home = async () => {
   const tags = await getTags();
   const posts = await getPosts();
   const firstPost = posts[0];
   const otherPosts = [1, 2, 3].map((index) => posts[index]);
+
+  const totalPages = Math.ceil(posts.length / 6);
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
     <div>
@@ -46,7 +44,7 @@ const Home = async () => {
                 {post.tags.map((tag) => (
                   <Link
                     key={tag.slug}
-                    href={`/tag/${tag.slug}`}
+                    href={`/blog/tag/${tag.slug}`}
                     className="rounded-[5px] bg-black/5 px-[20px] py-[8px] text-sm font-medium max-w-max"
                   >
                     {tag.title}
@@ -63,6 +61,8 @@ const Home = async () => {
           ))}
         </div>
       </main>
+
+      <Pagination pages={pages} />
     </div>
   );
 };
