@@ -4,7 +4,7 @@ import TagInfo from "@/app/components/TagInfo";
 import Link from "next/link";
 import Image from "next/image";
 import getTags from "@/app/actions/getTags";
-import Pagination from "@/app/components/Pagination";
+import Pagination from "@/app/components/Pagin";
 
 interface IParams {
   page?: string;

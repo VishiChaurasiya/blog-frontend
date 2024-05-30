@@ -4,7 +4,7 @@ import getTags from "./actions/getTags";
 import Post from "./components/Post";
 import TagInfo from "./components/TagInfo";
 import Image from "next/image";
-import Pagination from "./components/Pagination";
+import Pagination from "./components/Pagin";
 
 const Home = async () => {
   const tags = await getTags();
